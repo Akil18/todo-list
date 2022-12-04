@@ -1,20 +1,30 @@
-import React, { useContext } from 'react';
-import { StoreContext } from '..';
+import React, { useContext} from 'react';
+import { StoreContext } from '../contexts/StoreProvider';
+import ListItem from './ListItem';
+
 
 const List = () => {
-    const {store, taskCompleted} = useContext(StoreContext);
-    // const {tasks} = store.getState();
-    const list = store.getState()
+    const {storeElements, markAsComplete, removeTask} = useContext(StoreContext);
 
-    store.dispatch(taskCompleted(4));
-    console.log(store.getState());
-    console.log(list);
+    const handleComplete = (id) => {
+        markAsComplete(id);
+    };
+
+    const handleRemove = (id) => {
+        removeTask(id);
+    }
     
     return (
-        <div>
-            {/* {tasks.length} */}
-            
-            {list.length}
+        <div className='border-r-2 px-8'>
+            {
+                storeElements.map( item => <ListItem
+                        key={item.id}
+                        handleComplete={handleComplete}
+                        handleRemove={handleRemove}
+                        item={item}
+                    ></ListItem>
+                )
+            }
         </div>
     );
 };

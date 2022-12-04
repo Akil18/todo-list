@@ -1,25 +1,21 @@
 import './App.css';
-import { useContext } from 'react';
-import { StoreContext } from '.';
+import AddItem from './components/AddItem';
+import Completed from './components/Completed';
 import List from './components/List';
+import Navbar from './components/Navbar';
 
 function App() {
-  const {store, taskAdded, taskRemoved, taskCompleted} = useContext(StoreContext);
-  
-  store.dispatch(taskAdded('Buy eggs'));
-  store.dispatch(taskAdded('Buy bread'));
-  store.dispatch(taskAdded('Buy milk'));
-
-  store.dispatch(taskRemoved(1));
-
-  // store.dispatch(taskCompleted(2));
-
-// console.log(store.getState());
 
   return (
-    <div className="App">
-        <h1>Redux</h1>
-        <List></List>
+    <div className="text-center">
+        <Navbar></Navbar>
+        <div className="grid justify-center">
+          <AddItem></AddItem>
+        </div>
+        <div className='grid grid-cols-2'>
+          <List></List>
+          <Completed></Completed>
+        </div>
     </div>
   );
 }

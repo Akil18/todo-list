@@ -1,26 +1,17 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './stateManagement/store';
-import { taskAdded, taskCompleted, taskRemoved } from './stateManagement/actions';
+import StoreProvider from './contexts/StoreProvider';
 
-export const StoreContext = createContext();
-
-const storeInfo = {
-  store,
-  taskAdded,
-  taskCompleted,
-  taskRemoved
-};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StoreContext.Provider value={storeInfo}>
+    <StoreProvider>
       <App />
-    </StoreContext.Provider>
+    </StoreProvider>
   </React.StrictMode>
 );
 

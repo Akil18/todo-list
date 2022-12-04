@@ -20,3 +20,10 @@ export const taskCompleted = id => ({
         id
     }
 })
+
+export const setTaskIncomplete = id => ({
+    type: actions.TASK_COMPLETED,
+    payload: {
+        id
+    }
+})
