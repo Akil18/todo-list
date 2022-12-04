@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useContext } from 'react';
+import { StoreContext } from '.';
+import List from './components/List';
 
 function App() {
+  const {store, taskAdded, taskRemoved, taskCompleted} = useContext(StoreContext);
+  
+  store.dispatch(taskAdded('Buy eggs'));
+  store.dispatch(taskAdded('Buy bread'));
+  store.dispatch(taskAdded('Buy milk'));
+
+  store.dispatch(taskRemoved(1));
+
+  // store.dispatch(taskCompleted(2));
+
+// console.log(store.getState());
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>Redux</h1>
+        <List></List>
     </div>
   );
 }
